@@ -3,9 +3,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
+import { configureStore, history } from './store/configureStore';
+
+const store = configureStore();
+
 const render = () => {
-  const App = require('./containers/App').default; // eslint-disable-line global-require
-  ReactDOM.render(<AppContainer><App /></AppContainer>, document.getElementById('App'));
+  const Root = require('./containers/Root').default; // eslint-disable-line global-require
+  ReactDOM.render(<AppContainer><Root store={store} history={history} /></AppContainer>, document.getElementById('App'));
 };
 
 render();
