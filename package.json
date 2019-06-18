@@ -1,78 +1,36 @@
 {
-  "name": "electron-react-simple",
-  "productName": "electron-react-simple",
+  "name": "electron-react",
   "version": "1.0.0",
-  "description": "My Electron application description",
-  "main": "src/main.js",
-  "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "eslint --cache --color --ext .jsx,.js src"
-  },
-  "keywords": [],
-  "author": "ndtha",
+  "main": "index.js",
+  "repository": "git@github.com:ndthanhdev/electron-react.git",
+  "author": "thanhnd12 <thanhnd12@vng.com.vn>",
   "license": "MIT",
-  "config": {
-    "forge": {
-      "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
-        ]
-      },
-      "electronPackagerConfig": {
-        "packageManager": "yarn"
-      },
-      "electronWinstallerConfig": {
-        "name": "electron_react_simple"
-      },
-      "electronInstallerDebian": {},
-      "electronInstallerRedhat": {},
-      "github_repository": {
-        "owner": "",
-        "name": ""
-      },
-      "windowsStoreConfig": {
-        "packageName": "",
-        "name": "electronreactsimple"
-      }
-    }
-  },
-  "dependencies": {
-    "electron-compile": "^6.4.2",
-    "electron-devtools-installer": "^2.1.0",
-    "electron-squirrel-startup": "^1.0.0",
-    "history": "^4.7.2",
-    "prop-types": "^15.6.1",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "react-hot-loader": "^3.0.0-beta.6",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.3.1",
-    "react-router-redux": "^5.0.0-alpha.6",
-    "redux": "^4.0.0",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+  "scripts": {
+    "dev:main": "cross-env NODE_ENV=development electron -r @babel/register ./src/main.js",
+    "dev:renderer": "cross-env NODE_ENV=development webpack-dev-server --config ./configs/webpack.renderer",
+    "dev": "concurrently -n renderer,main \"npm:dev:renderer\" \"npm:dev:main\"",
+    "build:main": "cross-env NODE_ENV=production webpack --config ./configs/webpack.main",
+    "build:renderer": "cross-env NODE_ENV=production webpack --config ./configs/webpack.renderer",
+    "build": "concurrently \"npm:build:*\"",
+    "start": "electron ./dist/main.js"
   },
   "devDependencies": {
-    "babel-plugin-transform-async-to-generator": "^6.24.1",
-    "babel-plugin-transform-es2015-classes": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "electron-forge": "^5.2.2",
-    "electron-prebuilt-compile": "2.0.2",
-    "eslint": "^3",
-    "eslint-config-airbnb": "^15",
-    "eslint-plugin-import": "^2",
-    "eslint-plugin-jsx-a11y": "^5",
-    "eslint-plugin-react": "^7"
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.4.4",
+    "babel-loader": "^8.0.6",
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "electron": "^5.0.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
