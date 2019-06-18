@@ -6,6 +6,7 @@
   "author": "thanhnd12 <thanhnd12@vng.com.vn>",
   "license": "MIT",
   "scripts": {
+    "dev:build-dll": "webpack --config ./configs/webpack.renderer.library",
     "dev:main": "cross-env NODE_ENV=development electron -r @babel/register ./src/main.js",
     "dev:renderer": "cross-env NODE_ENV=development webpack-dev-server --config ./configs/webpack.renderer",
     "dev": "concurrently -n renderer,main \"npm:dev:renderer\" \"npm:dev:main\"",
