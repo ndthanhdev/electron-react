@@ -7,5 +7,5 @@ module.exports = {
   isProduction,
   port: process.env.PORT || 1212,
   outDir: path.resolve(__dirname, "../../dist"),
-  dllDir: !isProduction && path.resolve(rootDir, "dll")
+  dllDir: path.resolve(rootDir, "dll")
 };
